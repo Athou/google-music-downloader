@@ -1,2 +1,3 @@
 eyed3
 gmusicapi
+goldfinch
