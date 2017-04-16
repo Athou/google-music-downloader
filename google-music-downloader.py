@@ -1,6 +1,6 @@
 import os
 import sys
-import urllib
+import urllib.request
 import eyed3
 from goldfinch import validFileName as vfn
 from gmusicapi import Mobileclient
@@ -20,7 +20,7 @@ api = Mobileclient(debug_logging=False)
 api.login(login, password, Mobileclient.FROM_MAC_ADDRESS)
 
 album = api.get_album_info(albumId)
-dirName = vfn("%s - %s" % (album["artist"], album["name"]), space="keep", initCap=False)
+dirName = vfn("%s - %s" % (album["artist"], album["name"]), space="keep", initCap=False).decode('utf-8')
 dirPath = targetDir + "/" + dirName
 
 print("downloading to directory: " + dirPath)
@@ -29,10 +29,10 @@ if not os.path.exists(dirPath):
 	
 for song in album["tracks"]:
   url = api.get_stream_url(song_id=song["storeId"], quality="hi")
-  fileName = vfn("%s. %s - %s.mp3" % (song["trackNumber"], song["artist"], song["title"]), space="keep", initCap=False)
+  fileName = vfn("%s. %s - %s.mp3" % (song["trackNumber"], song["artist"], song["title"]), space="keep", initCap=False).decode('utf-8')
   filePath = dirPath + "/" + fileName
   print("downloading: " + fileName)
-  urllib.urlretrieve(url, filePath)
+  urllib.request.urlretrieve(url, filePath)
   
   audio = eyed3.load(filePath)
   if audio.tag is None:
