@@ -25,7 +25,7 @@ api = Mobileclient(debug_logging=False)
 api.login(login, password, Mobileclient.FROM_MAC_ADDRESS)
 
 album = api.get_album_info(albumId)
-dirName = vfn("%s - %s" % (album["artist"], album["name"]), space="keep", initCap=False).decode('utf-8')
+dirName = vfn("%s - %s" % (album["artist"], album["name"]), space="keep", initCap=False).decode('utf-8').rstrip(".")
 dirPath = targetDir + "/" + dirName
 
 print("downloading to directory: " + dirPath)
@@ -34,7 +34,7 @@ if not os.path.exists(dirPath):
 	
 for song in album["tracks"]:
   url = api.get_stream_url(song_id=song["storeId"], quality="hi")
-  fileName = vfn("%s. %s - %s.mp3" % (song["trackNumber"], song["artist"], song["title"]), space="keep", initCap=False).decode('utf-8')
+  fileName = vfn("%s. %s - %s.mp3" % (song["trackNumber"], song["artist"], song["title"]), space="keep", initCap=False).decode('utf-8').rstrip(".")
   filePath = dirPath + "/" + fileName
   print("downloading: " + fileName)
   urlretrieve(url, filePath)
