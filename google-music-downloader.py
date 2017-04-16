@@ -6,7 +6,7 @@ from goldfinch import validFileName as vfn
 from gmusicapi import Mobileclient
 
 if len(sys.argv) == 1:
-  print "usage: google-music-downloader <login> <password> <target directory> <album id>"
+  print "usage: python google-music-downloader.py <login> <password> <target directory> <album id>"
   sys.exit()
 
 login = sys.argv[1]
