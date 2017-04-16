@@ -1,9 +1,12 @@
 import os
 import sys
-import urllib.request
 import eyed3
 from goldfinch import validFileName as vfn
 from gmusicapi import Mobileclient
+try:
+    from urllib.request import urlretrieve
+except ImportError:
+    from urllib import urlretrieve
 
 if len(sys.argv) == 1:
   print("usage: python google-music-downloader.py <email> <password> <target directory> <album id>")
@@ -32,7 +35,7 @@ for song in album["tracks"]:
   fileName = vfn("%s. %s - %s.mp3" % (song["trackNumber"], song["artist"], song["title"]), space="keep", initCap=False).decode('utf-8')
   filePath = dirPath + "/" + fileName
   print("downloading: " + fileName)
-  urllib.request.urlretrieve(url, filePath)
+  urlretrieve(url, filePath)
   
   audio = eyed3.load(filePath)
   if audio.tag is None:
