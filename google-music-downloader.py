@@ -1,12 +1,14 @@
+#!/usr/bin/env python
+ 
 import os
 import sys
 import eyed3
 from goldfinch import validFileName as vfn
 from gmusicapi import Mobileclient
 try:
-    from urllib.request import urlretrieve
+  from urllib.request import urlretrieve
 except ImportError:
-    from urllib import urlretrieve
+  from urllib import urlretrieve
 
 if len(sys.argv) == 1:
   print("usage: python google-music-downloader.py <email> <password> <target directory> <album id>")
