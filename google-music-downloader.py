@@ -5,22 +5,26 @@ import sys
 import eyed3
 from goldfinch import validFileName as vfn
 from gmusicapi import Mobileclient
+import getpass
 try:
   from urllib.request import urlretrieve
 except ImportError:
   from urllib import urlretrieve
 
+
 if len(sys.argv) == 1:
-  print("usage: python google-music-downloader.py <email> <password> <target directory> <album id>")
+  print("usage: python google-music-downloader.py <email> <target directory> <album id>")
   sys.exit()
-  
+
+
 def normalizePath(input):
   return vfn(input, space="keep", initCap=False).decode('utf-8').rstrip(".")  
 
+
 login = sys.argv[1]
-password = sys.argv[2]
-targetDir = sys.argv[3]
-albumId = sys.argv[4]
+targetDir = sys.argv[2]
+albumId = sys.argv[3]
+password = getpass.getpass()
 
 eyed3.log.setLevel("ERROR")
 
