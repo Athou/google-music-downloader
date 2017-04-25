@@ -13,7 +13,7 @@ except ImportError:
 
 
 if len(sys.argv) == 1:
-  print("usage: python google-music-downloader.py <email> <target directory> <album id>")
+  print("usage: gmusic-dl.py <email> <album id>")
   sys.exit()
 
 
@@ -22,8 +22,8 @@ def normalizePath(input):
 
 
 login = sys.argv[1]
-targetDir = sys.argv[2]
-albumId = sys.argv[3]
+targetDir = os.getcwd()
+albumId = sys.argv[2]
 password = getpass.getpass()
 
 eyed3.log.setLevel("ERROR")
