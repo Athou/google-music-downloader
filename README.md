@@ -5,6 +5,6 @@ Because you love Google Music but you still need to be able to download files on
 
 #### Usage:
 ```
-python setup.py install
-gmusic-dl.py <email> <album id>
+pip install -r requirements.txt
+python gmusic-dl.py <email> <album id>
 ```

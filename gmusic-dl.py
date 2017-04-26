@@ -13,7 +13,7 @@ except ImportError:
 
 
 if len(sys.argv) == 1:
-  print("usage: gmusic-dl.py <email> <album id>")
+  print("usage: python gmusic-dl.py <email> <album id>")
   sys.exit()
 
 
